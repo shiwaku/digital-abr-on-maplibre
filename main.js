@@ -253,7 +253,7 @@ map.on("load", () => {
     maxzoom: 23,
     layout: {
       "text-field": ["get", "city"],
-      "text-size": ["interpolate", ["linear"], ["zoom"], 8, 10, 12, 12, 16, 14],
+      "text-size": ["interpolate", ["linear"], ["zoom"], 8, 11, 12, 13],
       "text-font": ["NotoSansJP-Regular", "NotoSerifJP-Medium"],
       "text-anchor": "bottom",
       "text-offset": [0, 0],
