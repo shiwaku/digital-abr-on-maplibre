@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>デジタル庁アドレス・ベース・レジストリ(ABR)</title>
+  <link href="https://unpkg.com/maplibre-gl@5.2.0/dist/maplibre-gl.css" rel="stylesheet" />
+  <script src="https://unpkg.com/maplibre-gl@5.2.0/dist/maplibre-gl.js"></script>
+  <script src="https://unpkg.com/pmtiles@3.2.0/dist/pmtiles.js"></script>
+  <script src="https://unpkg.com/@maplibre/maplibre-gl-geocoder@1.2.0/dist/maplibre-gl-geocoder.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/@maplibre/maplibre-gl-geocoder@1.2.0/dist/maplibre-gl-geocoder.css"
+    type="text/css" />
+  <link href="style.css" rel="stylesheet" />
+</head>
+
+<body>
+  <div id="map"></div>
+  <!-- メニューパネル -->
+  <div id="menu-panel">
+    <details>
+      <summary class="summary-trigger">
+        <strong><big>メニュー</big><br>（表示切替）</strong>
+      </summary>
+      <fieldset>
+        <details open>
+          <summary class="summary-trigger">
+            <strong><big>デジタル庁ABR</big></strong>
+          </summary>
+          <fieldset>
+            <div class="select_box">
+              <label class="toggle-button-001">
+                <input type="checkbox" class="layer-switch" data-layer="town-point-1,town-point-2,town-point-3,town-heatmap-0,town-heatmap-1" checked />
+                <span class="slider"></span>
+              </label>
+              町字データ
+            </div>
+          </fieldset>
+        </details>
+      </fieldset>
+    </details>
+  </div>
+  <script src="main.js"></script>
+</body>
+
+</html>
