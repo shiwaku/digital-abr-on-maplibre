@@ -75,9 +75,32 @@ map.addControl(
   })
 );
 
-const layerIds = ["town-point-1", "fude-polygon"];
+const layerIds = ["town-point-1", "fude-polygon", "did"];
 
 map.on("load", () => {
+  // 人口集中地区ベクトルタイル
+  map.addSource("did", {
+    type: "vector",
+    url: "pmtiles://https://xs489works.xsrv.jp/pmtiles-data/r2DID/2020_did_ddsw_01-47_JGD2011.pmtiles",
+    attribution:
+      "<a href='https://www.e-stat.go.jp/gis' target='_blank'>政府統計の総合窓口[e-Stat] 人口集中地区（2020年）</a>",
+  });
+
+  // 人口集中地区レイヤー（ポリゴン）
+  map.addLayer({
+    id: "did",
+    type: "fill",
+    source: "did",
+    "source-layer": "2020_did_ddsw_0147_JGD2011fgb",
+    layout: {
+      visibility: "none",
+    },
+    paint: {
+      "fill-color": "rgb(255, 191, 0)",
+      "fill-opacity": 0.2,
+    },
+  });
+
   // 法務省地図XMLベクトルタイル
   map.addSource("moj-xml", {
     type: "vector",
