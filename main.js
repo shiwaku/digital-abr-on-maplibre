@@ -244,6 +244,29 @@ map.on("load", () => {
     },
   });
 
+  // 都道府県ラベルレイヤ
+  map.addLayer({
+    id: "pref-label",
+    type: "symbol",
+    source: "abr",
+    "source-layer": "out_mt_pref_all_with_pos",
+    minzoom: 4,
+    maxzoom: 8,
+    layout: {
+      "text-field": ["get", "pref"],
+      "text-size": ["interpolate", ["linear"], ["zoom"], 4, 12, 8, 14],
+      "text-font": ["NotoSansJP-Regular", "NotoSerifJP-Medium"],
+      "text-anchor": "bottom",
+      "text-offset": [0, 0],
+      "text-allow-overlap": ["step", ["zoom"], false, 16, true],
+    },
+    paint: {
+      "text-color": "rgb(255,255,255)",
+      "text-halo-color": "rgb(0,0,0)",
+      "text-halo-width": 1,
+    },
+  });
+
   // 市区町村ラベルレイヤ
   map.addLayer({
     id: "city-label",
@@ -267,26 +290,32 @@ map.on("load", () => {
     },
   });
 
-  // 都道府県ラベルレイヤ
+  // 町字ラベルレイヤ
   map.addLayer({
-    id: "pref-label",
+    id: "town-label",
     type: "symbol",
     source: "abr",
-    "source-layer": "out_mt_pref_all_with_pos",
-    minzoom: 4,
-    maxzoom: 8,
+    "source-layer": "out_mt_town_fullset_with_pos",
+    minzoom: 14,
+    maxzoom: 23,
     layout: {
-      "text-field": ["get", "pref"],
-      "text-size": ["interpolate", ["linear"], ["zoom"], 4, 12, 8, 14],
+      "text-field": ["concat", ["get", "oaza_cho"], ["get", "chome"]],
+      "text-size": ["interpolate", ["linear"], ["zoom"], 14, 11, 20, 11],
       "text-font": ["NotoSansJP-Regular", "NotoSerifJP-Medium"],
       "text-anchor": "bottom",
-      "text-offset": [0, 0],
+      "text-offset": [0, -1],
       "text-allow-overlap": ["step", ["zoom"], false, 16, true],
     },
     paint: {
-      "text-color": "rgb(255,255,255)",
-      "text-halo-color": "rgb(0,0,0)",
-      "text-halo-width": 1,
+      // "text-color": "#FF00FF",
+      "text-color": [
+        "case",
+        ["==", ["to-number", ["get", "rsdt_addr_flg"]], 1],
+        "#CB00CB",
+        "#006500",
+      ],
+      "text-halo-color": "rgb(255,255,255)",
+      "text-halo-width": 0.5,
     },
   });
 
