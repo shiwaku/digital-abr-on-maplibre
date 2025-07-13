@@ -81,7 +81,8 @@ map.on("load", () => {
   // デジ庁ABRベクトルタイル
   map.addSource("abr", {
     type: "vector",
-    url: "pmtiles://https://shiworks2.xsrv.jp/pmtiles/digital/abr/address.pmtiles",
+    // url: "pmtiles://https://shiworks2.xsrv.jp/pmtiles/digital/abr/address.pmtiles",
+    url: "pmtiles://https://pmtiles-data.s3.ap-northeast-1.amazonaws.com/digital/address.pmtiles",
     attribution:
       '<a href="https://catalog.registries.digital.go.jp/rc/dataset/">デジタル庁 アドレス・ベース・レジストリ(町字データ)を加工して作成</a>',
   });
