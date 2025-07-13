@@ -314,7 +314,7 @@ map.on("load", () => {
       "text-font": ["NotoSansJP-Regular"],
       "text-anchor": "bottom",
       "text-offset": [0, -1],
-      "text-allow-overlap": ["step", ["zoom"], false, 16, true],
+      // "text-allow-overlap": ["step", ["zoom"], false, 16, true],
     },
     paint: {
       "text-color": [
