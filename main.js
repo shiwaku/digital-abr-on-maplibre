@@ -310,7 +310,7 @@ map.on("load", () => {
         ],
         ["get", "chome"],
       ],
-      "text-size": ["interpolate", ["linear"], ["zoom"], 14, 13, 20, 13],
+      "text-size": ["interpolate", ["linear"], ["zoom"], 14, 14, 20, 16],
       "text-font": ["NotoSansJP-Regular"],
       "text-anchor": "bottom",
       "text-offset": [0, -1],
