@@ -300,7 +300,7 @@ map.on("load", () => {
     maxzoom: 23,
     layout: {
       "text-field": ["concat", ["get", "oaza_cho"], ["get", "chome"]],
-      "text-size": ["interpolate", ["linear"], ["zoom"], 14, 12, 20, 12],
+      "text-size": ["interpolate", ["linear"], ["zoom"], 14, 13, 20, 13],
       "text-font": ["NotoSansJP-Regular", "NotoSerifJP-Medium"],
       "text-anchor": "bottom",
       "text-offset": [0, -1],
