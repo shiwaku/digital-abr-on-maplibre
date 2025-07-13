@@ -86,48 +86,38 @@ map.on("load", () => {
       '<a href="https://github.com/amx-project">法務省地図XML（amx-project）</a>',
   });
 
-  /*
-  // 法務省地図ベクトルタイル
-  map.addSource("moj-xml", {
-    type: "vector",
-    // url: "pmtiles://https://data.source.coop/smartmaps/amx-2024-04/MojMap_amx_2024.pmtiles",
-    url: "pmtiles://https://pmtiles-data.s3.ap-northeast-1.amazonaws.com/moj-xml/MojMap_amx_2024.pmtiles",
-    attribution:
-      '<a href="https://github.com/amx-project">法務省地図XML（amx-project）</a>',
-  });
-  */
-
-  /*
-  // 法務省地図レイヤー（ポリゴン）
+  // 代表点ヒートマップ
   map.addLayer({
-    id: "fude-polygon",
+    id: "daihyo-heatmap",
+    type: "heatmap",
     source: "moj-xml",
-    "source-layer": "fude",
-    type: "fill",
-    layout: {
-      visibility: "visible",
-    },
+    "source-layer": "daihyo",
+    minzoom: 4,
+    maxzoom: 8,
     paint: {
-      "fill-color": "#FFF2CC",
-      "fill-opacity": 0.2,
+      "heatmap-weight": 1,
+      "heatmap-intensity": ["interpolate", ["linear"], ["zoom"], 4, 1.5, 8, 4],
+      "heatmap-color": [
+        "interpolate",
+        ["linear"],
+        ["heatmap-density"],
+        0,
+        "rgba(0,203,203,0)",
+        0.05,
+        "rgba(0,255,255,0.4)",
+        0.15,
+        "rgba(50,255,255,0.6)",
+        0.35,
+        "rgba(101,255,255,0.8)",
+        0.6,
+        "rgba(153,255,255,0.9)",
+        1,
+        "rgba(204,255,255,1)",
+      ],
+      "heatmap-radius": ["interpolate", ["linear"], ["zoom"], 4, 4, 8, 6],
+      "heatmap-opacity": 0.6,
     },
   });
-
-  // 法務省地図レイヤー（ライン）
-  map.addLayer({
-    id: "fude-line",
-    source: "moj-xml",
-    "source-layer": "fude",
-    type: "line",
-    layout: {
-      visibility: "visible",
-    },
-    paint: {
-      "line-color": "#FF0000",
-      "line-width": 1.2,
-    },
-  });
-  */
 
   // 代表点レイヤー
   map.addLayer({
