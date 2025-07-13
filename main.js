@@ -71,7 +71,7 @@ map.addControl(
     compact: true,
     customAttribution:
       '（<a href="https://twitter.com/shi__works" target="_blank">X(旧Twitter)</a> | ' +
-      '<a href="https://github.com/shiwaku/mlit-reinfolib-map-on-maplibre" target="_blank">GitHub</a>）',
+      '<a href="https://github.com/shiwaku/digital-abr-on-maplibre" target="_blank">GitHub</a>）',
   })
 );
 
