@@ -324,7 +324,7 @@ map.on("load", () => {
         "#006500",
       ],
       "text-halo-color": "rgb(255,255,255)",
-      "text-halo-width": 0.5,
+      "text-halo-width": 0.75,
     },
   });
 
