@@ -299,15 +299,24 @@ map.on("load", () => {
     minzoom: 14,
     maxzoom: 23,
     layout: {
-      "text-field": ["concat", ["get", "oaza_cho"], ["get", "chome"]],
+      // "text-field": ["concat", ["get", "oaza_cho"], ["get", "chome"]],
+      "text-field": [
+        "concat",
+        [
+          "case",
+          ["all", ["has", "oaza_cho"], ["!=", ["get", "oaza_cho"], ""]],
+          ["get", "oaza_cho"],
+          ["get", "koaza"],
+        ],
+        ["get", "chome"],
+      ],
       "text-size": ["interpolate", ["linear"], ["zoom"], 14, 13, 20, 13],
-      "text-font": ["NotoSansJP-Regular", "NotoSerifJP-Medium"],
+      "text-font": ["NotoSansJP-Regular"],
       "text-anchor": "bottom",
       "text-offset": [0, -1],
       "text-allow-overlap": ["step", ["zoom"], false, 16, true],
     },
     paint: {
-      // "text-color": "#FF00FF",
       "text-color": [
         "case",
         ["==", ["to-number", ["get", "rsdt_addr_flg"]], 1],
