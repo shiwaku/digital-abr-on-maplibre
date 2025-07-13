@@ -75,9 +75,144 @@ map.addControl(
   })
 );
 
-const layerIds = ["town-point-1"];
+const layerIds = ["town-point-1", "fude-polygon"];
 
 map.on("load", () => {
+  // 法務省地図XMLベクトルタイル
+  map.addSource("moj-xml", {
+    type: "vector",
+    url: "pmtiles://https://pmtiles-data.s3.ap-northeast-1.amazonaws.com/moj-xml/a.pmtiles",
+    attribution:
+      '<a href="https://github.com/amx-project">法務省地図XML（amx-project）</a>',
+  });
+
+  /*
+  // 法務省地図ベクトルタイル
+  map.addSource("moj-xml", {
+    type: "vector",
+    // url: "pmtiles://https://data.source.coop/smartmaps/amx-2024-04/MojMap_amx_2024.pmtiles",
+    url: "pmtiles://https://pmtiles-data.s3.ap-northeast-1.amazonaws.com/moj-xml/MojMap_amx_2024.pmtiles",
+    attribution:
+      '<a href="https://github.com/amx-project">法務省地図XML（amx-project）</a>',
+  });
+  */
+
+  /*
+  // 法務省地図レイヤー（ポリゴン）
+  map.addLayer({
+    id: "fude-polygon",
+    source: "moj-xml",
+    "source-layer": "fude",
+    type: "fill",
+    layout: {
+      visibility: "visible",
+    },
+    paint: {
+      "fill-color": "#FFF2CC",
+      "fill-opacity": 0.2,
+    },
+  });
+
+  // 法務省地図レイヤー（ライン）
+  map.addLayer({
+    id: "fude-line",
+    source: "moj-xml",
+    "source-layer": "fude",
+    type: "line",
+    layout: {
+      visibility: "visible",
+    },
+    paint: {
+      "line-color": "#FF0000",
+      "line-width": 1.2,
+    },
+  });
+  */
+
+  // 代表点レイヤー
+  map.addLayer({
+    id: "daihyo-1",
+    source: "moj-xml",
+    "source-layer": "daihyo",
+    type: "circle",
+    minzoom: 8,
+    layout: {
+      visibility: "none",
+    },
+    paint: {
+      "circle-color": "#00FFFF",
+      "circle-radius": 10,
+      "circle-blur": 3,
+      "circle-opacity": 0.8,
+    },
+  });
+
+  // 代表点レイヤー
+  map.addLayer({
+    id: "daihyo-2",
+    source: "moj-xml",
+    "source-layer": "daihyo",
+    type: "circle",
+    minzoom: 8,
+    layout: {
+      visibility: "none",
+    },
+    paint: {
+      "circle-color": "#00FFFF",
+      "circle-radius": 5,
+      "circle-blur": 3,
+      "circle-opacity": 0.8,
+    },
+  });
+
+  // 代表点レイヤー
+  map.addLayer({
+    id: "daihyo-3",
+    source: "moj-xml",
+    "source-layer": "daihyo",
+    type: "circle",
+    minzoom: 8,
+    layout: {
+      visibility: "none",
+    },
+    paint: {
+      "circle-color": "#ffffff",
+      "circle-radius": 1.5,
+      "circle-blur": 0,
+      "circle-opacity": 1,
+    },
+  });
+
+  // 筆レイヤ（ポリゴン）
+  map.addLayer({
+    id: "fude-polygon",
+    source: "moj-xml",
+    "source-layer": "fude",
+    type: "fill",
+    layout: {
+      visibility: "none",
+    },
+    paint: {
+      "fill-color": "#CCF2FF",
+      "fill-opacity": 0.2,
+    },
+  });
+
+  // 筆レイヤ（ライン）
+  map.addLayer({
+    id: "fude-line",
+    source: "moj-xml",
+    "source-layer": "fude",
+    type: "line",
+    layout: {
+      visibility: "none",
+    },
+    paint: {
+      "line-color": "#00FFFF",
+      "line-width": 0.75,
+    },
+  });
+
   // デジ庁ABRベクトルタイル
   map.addSource("abr", {
     type: "vector",
@@ -311,7 +446,7 @@ map.on("load", () => {
         ["get", "chome"],
       ],
       "text-size": ["interpolate", ["linear"], ["zoom"], 14, 14, 20, 16],
-      "text-font": ["NotoSansJP-Regular"],
+      "text-font": ["NotoSerifJP-SemiBold"],
       "text-anchor": "bottom",
       "text-offset": [0, -1],
       // "text-allow-overlap": ["step", ["zoom"], false, 16, true],
@@ -324,13 +459,14 @@ map.on("load", () => {
         "#006500",
       ],
       "text-halo-color": "rgb(255,255,255)",
-      "text-halo-width": 0.75,
+      "text-halo-width": 1.5,
     },
   });
 
   map.showTileBoundaries = false;
 
   setupLayerSwitches();
+
   layerIds.forEach(addPopupHandler);
 });
 
@@ -367,7 +503,7 @@ function addPopupHandler(layerId) {
     features.forEach((feature, idx) => {
       // 各フィーチャの見出し（レイヤー名＋番号）
       const title = document.createElement("h4");
-      title.textContent = `町字マスター`;
+      // title.textContent = `町字マスター`;
       title.style.margin = "4px 0 2px";
       title.style.fontSize = "90%";
       container.appendChild(title);
