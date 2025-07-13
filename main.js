@@ -252,7 +252,7 @@ map.on("load", () => {
     minzoom: 8,
     maxzoom: 23,
     layout: {
-      "text-field": ["get", "city"],
+      "text-field": ["concat", ["get", "city"], ["get", "ward"]],
       "text-size": ["interpolate", ["linear"], ["zoom"], 8, 11, 12, 13],
       "text-font": ["NotoSansJP-Regular", "NotoSerifJP-Medium"],
       "text-anchor": "bottom",
