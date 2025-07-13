@@ -94,6 +94,9 @@ map.on("load", () => {
     "source-layer": "daihyo",
     minzoom: 4,
     maxzoom: 8,
+    layout: {
+      visibility: "none",
+    },
     paint: {
       "heatmap-weight": 1,
       "heatmap-intensity": ["interpolate", ["linear"], ["zoom"], 4, 1.5, 8, 4],
