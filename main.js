@@ -546,7 +546,8 @@ function addPopupHandler(layerId) {
 */
 
 map.on("click", (e) => {
-  const searchLayers = ["town-point-1", "town-point-2", "town-point-3"];
+  // const searchLayers = ["town-point-1", "town-point-2", "town-point-3"];
+  const searchLayers = ["town-point-1"];
   const canvas = map.getCanvas();
   const t0 = performance.now();
 
