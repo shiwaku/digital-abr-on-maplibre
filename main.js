@@ -503,6 +503,7 @@ function setupLayerSwitches() {
   });
 }
 
+/*
 function addPopupHandler(layerId) {
   map.on("click", layerId, (e) => {
     // クリック位置に描画されている同一レイヤーの全フィーチャを取得
@@ -542,3 +543,84 @@ function addPopupHandler(layerId) {
       .addTo(map);
   });
 }
+*/
+
+map.on("click", (e) => {
+  const searchLayers = ["town-point-1", "town-point-2", "town-point-3"];
+  const canvas = map.getCanvas();
+  const t0 = performance.now();
+
+  const features = map.queryRenderedFeatures(
+    [
+      [0, 0],
+      [canvas.width, canvas.height],
+    ],
+    { layers: searchLayers }
+  );
+
+  if (features.length === 0) {
+    alert("画面内に町字ポイントがありません。ズームインしてください。");
+    return;
+  }
+
+  const from = turf.point([e.lngLat.lng, e.lngLat.lat]);
+  const filtered = features
+    .map((f) => ({
+      feature: f,
+      dist: turf.distance(from, turf.point(f.geometry.coordinates), {
+        units: "kilometers",
+      }),
+    }))
+    .filter((obj) => obj.dist <= 5)
+    .sort((a, b) => a.dist - b.dist);
+
+  if (filtered.length === 0) {
+    alert("5000m（5km）以内に町字ポイントがありません。");
+    return;
+  }
+
+  const nearest = filtered[0].feature;
+  const dist = filtered[0].dist;
+  const props = nearest.properties;
+  const t1 = performance.now();
+
+  // 住所の組み立て
+  const address_kanji =
+    (props.pref || "") +
+    (props.city || "") +
+    (props.oaza_cho || "") +
+    (props.chome || "") +
+    (props.koaza || "");
+
+  const address_kana =
+    (props.pref_kana || "") +
+    (props.city_kana || "") +
+    (props.oaza_cho_kana || "") +
+    (props.chome_kana || "") +
+    (props.koaza_kana || "");
+
+  // ポイントの経緯度
+  const rep_lon = props.rep_lon || nearest.geometry.coordinates[0];
+  const rep_lat = props.rep_lat || nearest.geometry.coordinates[1];
+
+  // ポップアップHTML
+  const popupHTML = `
+    <div>
+      <b>${address_kanji}</b><br>
+      ${address_kana}<br>
+      <span style="font-size:90%">
+        クリック地点: ${e.lngLat.lat.toFixed(6)}, ${e.lngLat.lng.toFixed(6)}<br>
+        住所地点: ${Number(rep_lat).toFixed(6)}, ${Number(rep_lon).toFixed(
+    6
+  )}<br>
+        距離: ${(dist * 1000).toFixed(0)}m<br>
+        検索時間: ${(t1 - t0).toFixed(1)}ms
+      </span>
+    </div>
+  `;
+
+  new maplibregl.Popup()
+    .setLngLat([e.lngLat.lng, e.lngLat.lat])
+    .setHTML(popupHTML)
+    .addTo(map);
+});

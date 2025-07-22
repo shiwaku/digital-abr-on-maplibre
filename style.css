@@ -110,11 +110,15 @@ a:visited {
 }
 
 .maplibregl-popup-content {
-  height: 40vh;
+  height: 100%;
+  width: 270px;
   overflow: auto;
+  font-size: 1.4em;
+  line-height: 1.7;
+  font-family: "Noto Sans JP", "Arial", sans-serif;
 }
 
-#menu-panel details>fieldset>details>fieldset {
+#menu-panel details > fieldset > details > fieldset {
   width: 250px;
   max-height: 300px;
   overflow-y: auto;
