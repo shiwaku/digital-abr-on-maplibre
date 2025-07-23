@@ -42,10 +42,12 @@ a:visited {
 
 .select_box {
   display: flex;
-  align-items: center;
   margin-bottom: 8px;
   font-size: 14px;
   line-height: 14px;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
 }
 
 .select_box:last-child {
@@ -140,4 +142,31 @@ a:visited {
   border-radius: 5px;
   transition: width 0.25s, min-width 0.25s;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.legend-item {
+  flex: 0 0 100%;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 26px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.color-dot {
+  display: inline-block;
+  width: 0.9em;
+  height: 0.9em;
+  border-radius: 50%;
+  vertical-align: middle;
+  margin-right: 4px;
 }
