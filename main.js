@@ -609,7 +609,8 @@ map.on("click", (e) => {
   // ポップアップHTML
   const popupHTML = `
     <div>
-      <b>${address_kanji}</b><br>
+      <b>【デジタル庁ABR町字】</b><br>
+      <b style="color:red">${address_kanji}</b><br>
       ${address_kana}<br>
       <span style="font-size:90%">
         クリック地点: ${e.lngLat.lat.toFixed(6)}, ${e.lngLat.lng.toFixed(6)}<br>
