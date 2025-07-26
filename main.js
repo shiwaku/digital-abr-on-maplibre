@@ -504,6 +504,7 @@ function setupLayerSwitches() {
 }
 
 /*
+// 属性のポップアップ表示
 function addPopupHandler(layerId) {
   map.on("click", layerId, (e) => {
     // クリック位置に描画されている同一レイヤーの全フィーチャを取得
@@ -545,6 +546,7 @@ function addPopupHandler(layerId) {
 }
 */
 
+// 町字ポイントの最近傍検索
 map.on("click", (e) => {
   // const searchLayers = ["town-point-1", "town-point-2", "town-point-3"];
   const searchLayers = ["town-point-1"];
