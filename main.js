@@ -233,7 +233,8 @@ map.on("load", () => {
   map.addSource("abr", {
     type: "vector",
     // url: "pmtiles://https://shiworks2.xsrv.jp/pmtiles/digital/abr/address.pmtiles",
-    url: "pmtiles://https://pmtiles-data.s3.ap-northeast-1.amazonaws.com/digital/address.pmtiles",
+    // url: "pmtiles://https://pmtiles-data.s3.ap-northeast-1.amazonaws.com/digital/address.pmtiles",
+    url: "pmtiles://https://pmtiles-data.s3.ap-northeast-1.amazonaws.com/digital/abr.pmtiles",
     attribution:
       '<a href="https://catalog.registries.digital.go.jp/rc/dataset/">デジタル庁 アドレス・ベース・レジストリ(町字データ)を加工して作成</a>',
   });
@@ -243,7 +244,7 @@ map.on("load", () => {
     id: "town-heatmap-0",
     type: "heatmap",
     source: "abr",
-    "source-layer": "out_mt_town_fullset_with_pos",
+    "source-layer": "town_fullset",
     minzoom: 4,
     maxzoom: 8,
     filter: ["==", ["to-number", ["get", "rsdt_addr_flg"]], 0],
@@ -277,7 +278,7 @@ map.on("load", () => {
     id: "town-heatmap-1",
     type: "heatmap",
     source: "abr",
-    "source-layer": "out_mt_town_fullset_with_pos",
+    "source-layer": "town_fullset",
     minzoom: 4,
     maxzoom: 8,
     filter: ["==", ["to-number", ["get", "rsdt_addr_flg"]], 1],
@@ -310,7 +311,7 @@ map.on("load", () => {
   map.addLayer({
     id: "town-point-1",
     source: "abr",
-    "source-layer": "out_mt_town_fullset_with_pos",
+    "source-layer": "town_fullset",
     type: "circle",
     minzoom: 8,
     paint: {
@@ -341,7 +342,7 @@ map.on("load", () => {
   map.addLayer({
     id: "town-point-2",
     source: "abr",
-    "source-layer": "out_mt_town_fullset_with_pos",
+    "source-layer": "town_fullset",
     type: "circle",
     minzoom: 8,
     paint: {
@@ -372,7 +373,7 @@ map.on("load", () => {
   map.addLayer({
     id: "town-point-3",
     source: "abr",
-    "source-layer": "out_mt_town_fullset_with_pos",
+    "source-layer": "town_fullset",
     type: "circle",
     minzoom: 8,
     paint: {
@@ -400,7 +401,7 @@ map.on("load", () => {
     id: "pref-label",
     type: "symbol",
     source: "abr",
-    "source-layer": "out_mt_pref_all_with_pos",
+    "source-layer": "pref_all",
     minzoom: 4,
     maxzoom: 8,
     layout: {
@@ -423,7 +424,7 @@ map.on("load", () => {
     id: "city-label",
     type: "symbol",
     source: "abr",
-    "source-layer": "out_mt_city_all_with_pos",
+    "source-layer": "city_all",
     minzoom: 8,
     maxzoom: 23,
     layout: {
@@ -446,7 +447,7 @@ map.on("load", () => {
     id: "town-label",
     type: "symbol",
     source: "abr",
-    "source-layer": "out_mt_town_fullset_with_pos",
+    "source-layer": "town_fullset",
     minzoom: 14,
     maxzoom: 23,
     layout: {
