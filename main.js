@@ -81,7 +81,7 @@ map.on("load", () => {
   // 人口集中地区ベクトルタイル
   map.addSource("did", {
     type: "vector",
-    url: "pmtiles://https://xs489works.xsrv.jp/pmtiles-data/r2DID/2020_did_ddsw_01-47_JGD2011.pmtiles",
+    url: "pmtiles://https://shi-works.com/pmtiles/r2DID/2020_did_ddsw_01-47_JGD2011.pmtiles",
     attribution:
       "<a href='https://www.e-stat.go.jp/gis' target='_blank'>政府統計の総合窓口[e-Stat] 人口集中地区（2020年）</a>",
   });
@@ -232,7 +232,7 @@ map.on("load", () => {
   // デジ庁ABRベクトルタイル
   map.addSource("abr", {
     type: "vector",
-    // url: "pmtiles://https://shiworks2.xsrv.jp/pmtiles/digital/abr/address.pmtiles",
+    // url: "pmtiles://https://shi-works.com/pmtiles/digital/abr/address.pmtiles",
     // url: "pmtiles://https://pmtiles-data.s3.ap-northeast-1.amazonaws.com/digital/address.pmtiles",
     url: "pmtiles://https://pmtiles-data.s3.ap-northeast-1.amazonaws.com/digital/abr.pmtiles",
     attribution:
